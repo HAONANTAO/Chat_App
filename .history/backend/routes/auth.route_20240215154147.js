@@ -1,8 +1,8 @@
 import express from "express";
-import { login, logout, signup } from "../controllers/auth.controller.js";
+import { login, logout, signup } from "../controllers/auth.controller";
 const authRouter = express.Router();
 
-authRouter.get("/signup", signup);
+authRouter.get("/signup");
 authRouter.get("/login", login);
 authRouter.get("/logout", logout);
 
