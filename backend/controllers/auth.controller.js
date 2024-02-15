@@ -1,15 +1,10 @@
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 export const signup = async (req, res) => {
   try {
-    const {
-      fullname,
-      username,
-      password,
-      confirmPassword,
-      gender,
-      profilePic,
-    } = req.body;
+    console.log("Request Body:", req.body);
+
+    const { fullname, username, password, confirmPassword, gender } = req.body;
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "passwords do not match" });
     }
@@ -18,25 +13,45 @@ export const signup = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user) {
-      return res.stats(400).json({ error: "username already existed" });
+      return res.status(400).json({ error: "username already existed" });
     }
     //continue to sign up
 
     //hash the password
 
     //random avatar API
-    //https://xsgames.co/randomusers/
-    const boyProfilePic = "https://xsgames.co/randomusers/avatar.php?g=male";
-    const girlProfilePic = "https://xsgames.co/randomusers/avatar.php?g=female";
+    //https://avatar-placeholder.iran.liara.run/
+    const profilePic = `https://avatar.iran.liara.run/username?username=${username}`;
+
+    const newUser = new User({
+      fullname,
+      username,
+      password,
+
+      gender,
+      profilePic,
+    });
+    await newUser.save();
+
+    //finally
+    res.status(201).json({
+      _id: newUser._id,
+      fullname: newUser.fullname,
+      username: newUser.username,
+      gender: newUser.gender,
+      profilePic: newUser.profilePic,
+    });
   } catch (err) {
-    res.send(err);
+    console.error("Error type:", err.constructor.name);
+    console.error("Sign up error:", err);
+    res.status(500).json({ error: err.message || "Internal Server Error" });
   }
 };
 export const logout = (req, res) => {
   console.log("logoutUser");
   res.send("logoutUser");
 };
-export const signup = (req, res) => {
-  console.log("signup");
-  res.send("signup");
+export const login = (req, res) => {
+  console.log("login");
+  res.send("login");
 };
