@@ -1,0 +1,8 @@
+{
+  "name": "Chat_App",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/HAONANTAO/Chat_App.git",
+  "author": "HAONANTAO <873190199@qq.com>",
+  "license": "MIT"
+}
