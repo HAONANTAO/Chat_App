@@ -1,9 +1,5 @@
-export const login = async (req, res) => {
-  try {
-    const { fullname, username, confirmPassword, gender } = req.body;
-  } catch (err) {
-    res.send(err);
-  }
+export const login = async(req, res) => {
+  try{}catch{}
 };
 export const logout = (req, res) => {
   console.log("logoutUser");

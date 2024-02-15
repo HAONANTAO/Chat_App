@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 const app = express();
-import connectToMongoDB from "./database/connectToMongoDB.js";
+
 import authRoutes from "./routes/auth.route.js";
 //add env file infor to process.env can be accessed
 dotenv.config();
@@ -15,6 +15,6 @@ app.get("/", (req, res) => {
 //middleware
 app.use("/api/auth", authRoutes);
 app.listen(PORT, () => {
-  connectToMongoDB();
+  coonectTo
   console.log(`running in port ${PORT}`);
 });
