@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
+import generateTokenAndSetCookie from "../utils/generateToken.js";
 export const signup = async (req, res) => {
   try {
     const { fullname, username, password, confirmPassword, gender } = req.body;
@@ -17,8 +18,9 @@ export const signup = async (req, res) => {
 
     //hash the password
     // Hash the password
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     //random avatar API
     //https://avatar-placeholder.iran.liara.run/
@@ -32,16 +34,20 @@ export const signup = async (req, res) => {
       gender,
       profilePic,
     });
-    await newUser.save();
+    if (newUser) {
+      //generate JWT token
+      generateTokenAndSetCookie(newUser._id, res);
+      await newUser.save();
 
-    //finally
-    res.status(201).json({
-      _id: newUser._id,
-      fullname: newUser.fullname,
-      username: newUser.username,
-      gender: newUser.gender,
-      profilePic: newUser.profilePic,
-    });
+      //finally
+      res.status(201).json({
+        _id: newUser._id,
+        fullname: newUser.fullname,
+        username: newUser.username,
+        gender: newUser.gender,
+        profilePic: newUser.profilePic,
+      });
+    }
   } catch (err) {
     console.error("Error type:", err.constructor.name);
     console.error("Sign up error:", err);
@@ -55,12 +61,14 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ error: "can not find the user" });
     }
+    //对比密码
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     console.log(passwordMatch);
     if (!passwordMatch) {
       return res.status(400).json({ error: "the password is not correct" });
     }
+    generateTokenAndSetCookie(user._id, res);
     return res.status(200).json({
       result: `you successfully log in to the account with the username   ${username}`,
     });
@@ -69,6 +77,10 @@ export const login = async (req, res) => {
   }
 };
 export const logout = (req, res) => {
-  console.log("login");
-  res.send("login");
+  try {
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "log out successfully!" });
+  } catch (error) {
+    res.status(500).json({ error: "server error" });
+  }
 };
