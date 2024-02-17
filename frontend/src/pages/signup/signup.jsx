@@ -19,13 +19,18 @@ const Signup = () => {
     console.log(inputs); // 在状态更新后打印inputs的值
   }, [inputs]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(inputs);
+    await signup(inputs);
+  };
   return (
     <div className="flex flex-col items-center justify-center mx-auto min-w-96">
       <div className="w-full p-6 bg-gray-400 bg-opacity-0 rounded-lg shadow-md bg-clip-padding backdrop-filter backdrop-blur-lg">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Sign Up <span className="text-blue-500"> ChatApp</span>
         </h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="fullname" className="p-2 label">
               <span className="text-base label-text">Full Name</span>
