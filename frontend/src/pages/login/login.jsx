@@ -36,6 +36,11 @@ const login = () => {
             className="inline mt-2 text-sm hover:underline hover:text-blue-600-block">
             {"Don’t"} have an account?
           </a>
+          <div>
+            <button className="mt-2 btn btn-block btn-sm" type="onSubmit">
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>
