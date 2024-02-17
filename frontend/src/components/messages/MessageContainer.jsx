@@ -1,5 +1,6 @@
 import React from "react";
 import Messages from "./Messages";
+import MessageInput from "../MessageInput";
 const MessageContainer = () => {
   return (
     <div className="md:min-w-[450px] flex flex-col">
@@ -9,7 +10,7 @@ const MessageContainer = () => {
           <span className="font-bold text-gray-900 ">John</span>
         </div>
         <Messages></Messages>
-        {/* <MessageInput></MessageInput> */}
+        <MessageInput></MessageInput>
       </>
     </div>
   );
