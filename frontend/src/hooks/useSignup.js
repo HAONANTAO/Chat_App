@@ -1,3 +1,4 @@
+import { sign } from "jsonwebtoken";
 import { useState } from "react";
 
 const useSignup = () => {
@@ -32,12 +33,15 @@ const useSignup = () => {
           gender,
         }),
       });
+      const data = await res.json();
+      console.log(data);
     } catch (error) {
       toast.error(error.message);
     } finally {
       setLoading(false);
     }
   };
+  return { loading, signup };
 };
 
 export default useSignup;
