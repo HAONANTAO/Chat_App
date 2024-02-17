@@ -1,12 +1,9 @@
+import Login from "./pages/login/login";
 function App() {
   return (
-    <>
-      <button className="btn btn-info">Info</button>
-      <button className="btn btn-success">Success</button>
-      <button className="btn btn-warning">Warning</button>
-      <button className="btn btn-error">Error</button>
-    </>
+    <div className="flex items-center justify-center h-screen p-4 ">
+      <Login></Login>
+    </div>
   );
 }
-
 export default App;
