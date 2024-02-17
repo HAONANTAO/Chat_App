@@ -1,5 +1,6 @@
-import { sign } from "jsonwebtoken";
+// import { sign } from "jsonwebtoken";
 import { useState } from "react";
+import { toast } from "react-hot-toast"; // Import the toast module
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
@@ -41,7 +42,7 @@ const useSignup = () => {
       setLoading(false);
     }
   };
-  return { loading, signup };
+  return [loading, signup];
 };
 
 export default useSignup;
@@ -53,7 +54,7 @@ function handleInputErrors({
   confirmedPassword,
   gender,
 }) {
-  if (!fullname || !username || password || !confirmedPassword || !gender) {
+  if (!fullname || !username || !password || !confirmedPassword || !gender) {
     toast.error("Please fill all the fields");
     return false;
   }

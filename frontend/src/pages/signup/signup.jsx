@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import GenderBox from "../../components/GenderBox";
 import { Link } from "react-router-dom";
+import useSignup from "../../hooks/useSignup";
 const Signup = () => {
+  const [loading, signup] = useSignup();
   const [inputs, setInputs] = useState({
     fullname: "",
     username: "",
@@ -21,7 +23,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
+
     await signup(inputs);
   };
   return (
