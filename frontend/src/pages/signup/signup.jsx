@@ -60,7 +60,7 @@ const Signup = () => {
             Already have an account?
           </a>
           <div>
-            <button className="mt-2 btn btn-block btn-sm" type="onSubmit">
+            <button className="mt-2 btn btn-block btn-sm" type="submit">
               Signup
             </button>
           </div>

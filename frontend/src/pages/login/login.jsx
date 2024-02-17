@@ -37,7 +37,7 @@ const login = () => {
             {"Don’t"} have an account?
           </a>
           <div>
-            <button className="mt-2 btn btn-block btn-sm" type="onSubmit">
+            <button className="mt-2 btn btn-block btn-sm" type="submit">
               Login
             </button>
           </div>
