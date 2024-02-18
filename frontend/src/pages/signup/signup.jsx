@@ -89,8 +89,15 @@ const Signup = () => {
             Already have an account?
           </Link>
           <div>
-            <button className="mt-2 btn btn-block btn-sm" type="submit">
-              Signup
+            <button
+              className="mt-2 btn btn-block btn-sm"
+              type="submit"
+              disabled={loading}>
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                <span>Signup</span>
+              )}
             </button>
           </div>
         </form>
