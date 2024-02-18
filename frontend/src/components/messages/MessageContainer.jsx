@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "../MessageInput";
 import { TiMessages } from "react-icons/ti";
+import useConversation from "../../zustand/useConversation";
 
+const MessageContainer = () => {
+  //dynamic
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  useEffect(() => {
+    //clean up function (unmounts)
+    return () => setSelectedConversation(null);
+  }, []);
+  return (
+    <div className="md:min-w-[450px] flex flex-col">
+      {!selectedConversation ? (
+        <NoChatSelected />
+      ) : (
+        <>
+          <div className="px-4 py-2 mb-2 bg-slate-500">
+            <span className="LABEL-TEXT">to: </span>
+            <span className="font-bold text-gray-900 ">
+              {selectedConversation.fullname}
+            </span>
+          </div>
+          <Messages></Messages>
+          <MessageInput></MessageInput>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default MessageContainer;
 const NoChatSelected = () => {
   return (
     <>
@@ -16,25 +46,3 @@ const NoChatSelected = () => {
     </>
   );
 };
-const MessageContainer = () => {
-  //dynamic
-  const noChatSelectedCheck = true;
-  return (
-    <div className="md:min-w-[450px] flex flex-col">
-      {noChatSelectedCheck ? (
-        <NoChatSelected />
-      ) : (
-        <>
-          <div className="px-4 py-2 mb-2 bg-slate-500">
-            <span className="LABEL-TEXT">to: </span>
-            <span className="font-bold text-gray-900 ">John</span>
-          </div>
-          <Messages></Messages>
-          <MessageInput></MessageInput>
-        </>
-      )}
-    </div>
-  );
-};
-
-export default MessageContainer;
