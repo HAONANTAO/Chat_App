@@ -8,7 +8,8 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
     <>
       <div
         className={`flex items-center gap-2 p-2 py-1 rounded cursor-pointer hover:bg-sky-500 
-        ${isSelected ? "bg-sky-500" : ""}`}>
+        ${isSelected ? "bg-sky-500" : ""}`}
+        onClick={() => setSelectedConversation(conversation)}>
         <div className="avatar online">
           <div className="w-12 rounded-full">
             <img src={conversation.profilePic} alt="user avatar" />
