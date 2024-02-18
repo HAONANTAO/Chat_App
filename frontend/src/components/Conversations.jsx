@@ -6,12 +6,15 @@ const Conversations = () => {
   console.log(conversations);
   return (
     <div className="flex flex-col py-2 overflow-auto">
-      <Conversation></Conversation>
-      <Conversation></Conversation>
-      <Conversation></Conversation>
-      <Conversation></Conversation>
-      <Conversation></Conversation>
-      <Conversation></Conversation>
+      {/* 遍历messages */}
+      {conversations.map((c) => {
+        return <Conversation key={c._id} conversations={c} emoji={}></Conversation>;
+      })}
+      {loading ? (
+        <span className="mx-auto loading loading-spinner"></span>
+      ) : (
+        <span>null</span>
+      )}
     </div>
   );
 };
