@@ -4,7 +4,7 @@ import useGetConversations from "../hooks/useGetConversations.js";
 import { getRandomEmoji } from "../utils/emojis.js";
 const Conversations = () => {
   const [loading, conversations] = useGetConversations();
-  console.log(conversations);
+
   return (
     <div className="flex flex-col py-2 overflow-auto">
       {/* 遍历messages */}
@@ -18,11 +18,7 @@ const Conversations = () => {
             lastIdx={idx === conversations.length - 1}></Conversation>
         );
       })}
-      {loading ? (
-        <span className="mx-auto loading loading-spinner"></span>
-      ) : (
-        <span>null</span>
-      )}
+      {loading ? <span className="mx-auto loading loading-spinner"></span> : ""}
     </div>
   );
 };
