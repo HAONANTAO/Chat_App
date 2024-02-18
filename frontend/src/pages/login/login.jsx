@@ -11,7 +11,7 @@ const login = () => {
         </h1>
         <form>
           <div>
-            <label for="username" className="p-2 label">
+            <label HTMLFor="username" className="p-2 label">
               <span className="text-base label-text">Username</span>
             </label>
             <input
@@ -22,7 +22,7 @@ const login = () => {
             />
           </div>
           <div>
-            <label className="p-2 label" for="password">
+            <label className="p-2 label" HTMLFor="password">
               <span className="text-base label-text">Password</span>
             </label>
             <input
