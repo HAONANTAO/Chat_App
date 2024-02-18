@@ -3,6 +3,6 @@ import protectRoute from "../middleware/protectRoute.js";
 import { getUsersForSideBar } from "../controllers/user.controller.js";
 const userRoute = express.Router();
 
-userRoute.get("/users", protectRoute, getUsersForSideBar);
+userRoute.get("/", protectRoute, getUsersForSideBar);
 
 export default userRoute;

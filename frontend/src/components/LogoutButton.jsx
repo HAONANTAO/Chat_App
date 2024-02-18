@@ -2,7 +2,7 @@ import React from "react";
 import { CiLogout } from "react-icons/ci";
 import useLogout from "../hooks/useLogout";
 const LogoutButton = () => {
-  const { loading, logout } = useLogout();
+  const [loading, logout] = useLogout();
   return (
     <div className="mt-auto">
       {!loading ? (

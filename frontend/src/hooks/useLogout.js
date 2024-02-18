@@ -23,7 +23,7 @@ const useLogout = () => {
       setLoading(false);
     }
   };
-  return { loading, logout };
+  return [loading, logout];
 };
 
 export default useLogout;
