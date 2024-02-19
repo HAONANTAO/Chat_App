@@ -12,7 +12,7 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({ children }) => {
   // 使用 useState 钩子来管理 authUser 状态
   const [authUser, setAuthUser] = useState(
-    JSON.parse(localStorage.getItem("chat-user") || null),
+    JSON.parse(localStorage.getItem("chat-user")) || null,
   );
 
   // AuthContext.Provider 用于将 authUser 状态和 setAuthUser 函数作为值传递给其子组件

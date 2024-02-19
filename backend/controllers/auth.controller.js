@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
       await newUser.save();
 
       //finally
-      res.status(201).json({
+      res.status(200).json({
         _id: newUser._id,
         fullname: newUser.fullname,
         username: newUser.username,
@@ -66,13 +66,15 @@ export const login = async (req, res) => {
     //对比密码
     const passwordMatch = await bcrypt.compare(password, user.password);
 
-    console.log(passwordMatch);
     if (!passwordMatch) {
       return res.status(400).json({ error: "the password is not correct" });
     }
     generateTokenAndSetCookie(user._id, res);
-    return res.status(200).json({
-      result: `you successfully log in to the account with the username   ${username}`,
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      username: user.username,
+      profilePic: user.profilePic,
     });
   } catch (err) {
     res.status(500).json({ error: "server error" });
