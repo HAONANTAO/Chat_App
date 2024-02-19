@@ -23,7 +23,7 @@ const Message = ({ message }) => {
       </div>
       <div className={`chat-bubble text-white  ${bubbleBgColor}`}>
         {message.message}
-        <div className="opacity-50 chat-footer">12:46</div>
+        <div className="opacity-50 chat-footer">{message.createAt}</div>
       </div>
     </div>
   );
