@@ -10,8 +10,8 @@ const MessageInput = () => {
       return;
     }
     await sendMessage(message);
-    //clear
 
+    //clear
     setMessage("");
   };
   return (
