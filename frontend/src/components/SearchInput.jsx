@@ -5,6 +5,7 @@ import useGetConversations from "../hooks/useGetConversations";
 import { toast } from "react-hot-toast";
 const SearchInput = () => {
   const { setSelectedConversation } = useConversation();
+  //要按顺序 不然打印出来为false
   const [, conversations] = useGetConversations();
 
   const [search, setSearch] = useState("");
