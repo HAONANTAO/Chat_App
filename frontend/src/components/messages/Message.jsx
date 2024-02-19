@@ -21,7 +21,7 @@ const Message = ({ message }) => {
           <img alt="Tailwind CSS chat bubble component" src={profilePic} />
         </div>
       </div>
-      <div className={`chat-bubble text-white  ${bubbleBgColor}`}>
+      <div className={`chat-bubble text-white  ${bubbleBgColor} pb-2`}>
         {message.message}
         <div className="opacity-50 chat-footer">{formattedTime}</div>
       </div>
