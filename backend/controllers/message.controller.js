@@ -9,7 +9,7 @@ export const sendMessage = async (req, res) => {
     const senderId = req.user._id;
 
     //先找有没有对话
-    const conversation = await Conversation.findOne({
+    let conversation = await Conversation.findOne({
       participants: { $all: [senderId, receiverId] },
     });
     //没有对话 创造一个对话
@@ -47,8 +47,10 @@ export const getMessages = async (req, res) => {
       participants: { $all: [senderId, receiverID] },
     }).populate("messages"); //populate("messages") 时，Mongoose 会自动查询关联的 Message 模型，并将实际的消息内容填充到 conversation 中的 messages 数组中。
     if (!conversation) {
-      res.status(200).json([]);
+      res.json([]);
+      return; // 确保在发送响应后退出函数
     }
+
     const messages = conversation.messages;
     res.status(200).json(messages);
   } catch (error) {
