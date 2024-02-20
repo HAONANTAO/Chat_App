@@ -7,7 +7,7 @@ import messageRoutes from "./routes/message.route.js";
 import userRoutes from "./routes/user.route.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-const app = express();
+import { app, server } from "./socket/socket.js";
 //add env file infor to process.env can be accessed
 dotenv.config();
 const PORT = process.env.PORT || 8000;
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.send("hello root server");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`running in port ${PORT}`);
 });
