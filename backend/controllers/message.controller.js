@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReceiverSocketId } from "../socket/socket.js";
 export const sendMessage = async (req, res) => {
   try {
     const { message } = req.body;
@@ -32,6 +33,15 @@ export const sendMessage = async (req, res) => {
 
     //并行 两个一起执行成功才可以 parallel
     await Promise.all([await newMessage.save(), await conversation.save()]);
+
+    //socket io
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      //send messages to receiver
+      io.to(receiverSocketId).emit("newMessages", newMessage);
+    }
+
     res.status(201).json(newMessage);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });

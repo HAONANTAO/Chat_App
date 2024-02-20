@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
-
+import useListenMessages from "../../hooks/useListenMessages";
 const Messages = () => {
   const [messages, loading] = useGetMessages();
   const lastMessageRef = useRef();
+  useListenMessages();
 
   //即第一次渲染完成后），将页面滚动到消息列表中的最后一条消息
   useEffect(() => {
