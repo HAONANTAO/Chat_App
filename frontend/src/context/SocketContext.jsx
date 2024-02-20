@@ -20,10 +20,7 @@ export const SocketContextProvider = ({ children }) => {
           userId: authUser._id,
         },
       });
-      socket.on("connect_error", (error) => {
-        console.error("Socket connection error:", error);
-        // 可以在此处处理连接错误，例如设置错误状态或显示错误消息
-      });
+
       setSocket(socket);
 
       // socket.on() is used to listen to the events. can be used both on client and server side

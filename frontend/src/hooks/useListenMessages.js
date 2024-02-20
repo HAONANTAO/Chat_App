@@ -10,12 +10,10 @@ const useListenMessages = () => {
   const { messages, setMessages } = useConversation();
 
   useEffect(() => {
-    console.log(socket);
     socket?.on("newMessage", (newMessage) => {
       newMessage.shouldShake = true;
       const sound = new Audio(notificationSound);
       sound.play();
-      console.log("ssss");
       setMessages([...messages, newMessage]);
     });
 

@@ -6,7 +6,9 @@
   "author": "HAONANTAO ",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "build": "yarn install && yarn install --prefix frontend && yarn build --prefix frontend"
   },
   "type": "module",
   "dependencies": {
